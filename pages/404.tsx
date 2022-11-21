@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         as="main"
         ml={{ base: '0rem', md: '6rem' }}
         padding="60px 50px"
-        bgColor={'gray.800'}
+        bgColor={'brand.secondaryBlack'}
       >
         <Box
           w="100%"

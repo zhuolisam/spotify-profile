@@ -1,10 +1,11 @@
 import Head from 'next/head';
-import { Box, Text, Button } from '@chakra-ui/react';
-import { useEffect, useState, useContext } from 'react';
+import { Box, Text } from '@chakra-ui/react';
+import { useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
 
 import { AuthContext } from 'providers/AuthContext';
 import NavBar from 'components/NavBar';
-import Link from 'next/link';
+import axios from 'axios';
 
 type Props = {
   children?: React.ReactNode;
@@ -12,13 +13,54 @@ type Props = {
 
 function Layout({ children }: Props) {
   // @ts-ignore
-  const { authenticated, setauthenticated, loading, setLoading } =
-    useContext(AuthContext);
+  const { authenticated, setauthenticated } = useContext(AuthContext);
+
+  const router = useRouter();
 
   useEffect(() => {
     console.log('useEffect from Layout');
-    if (authenticated && window.localStorage.getItem('access_token')) {
-      setLoading(false);
+    document.body.style.backgroundColor = 'rgb(24,24,24)';
+
+    const access_token = JSON.parse(
+      window.localStorage.getItem('access_token') || 'null'
+    );
+
+    //if access_token is expired, refresh it
+    if (
+      access_token &&
+      Date.now() - access_token.timestamp > access_token.expires_in * 1000
+    ) {
+      console.log('refreshing token');
+      setauthenticated(false);
+      axios
+        .post(`/api/refresh_token`, {
+          refreshToken: access_token.refresh_token,
+        })
+        .then((res) => {
+          console.log('successful refresh: ', res);
+          const token_data = { ...res.data, timestamp: Date.now() };
+          window.localStorage.setItem(
+            'access_token',
+            JSON.stringify(token_data)
+          );
+          setauthenticated(true);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+      return;
+    }
+
+    if (access_token) {
+      console.log('user authenticated');
+      setauthenticated(true);
+      return;
+    }
+
+    //if no token at all, login again
+    if (!access_token) {
+      router.push('/login');
+      return;
     }
   });
 
@@ -40,8 +82,19 @@ function Layout({ children }: Props) {
       {
         <>
           <NavBar />
-          {!loading ? (
-            <>{children}</>
+          {authenticated ? (
+            <>
+              <Box
+                as="main"
+                ml={{ base: '0rem', md: '6rem' }}
+                mb={{ base: '4.5rem', md: '0rem' }}
+                padding={{ base: '60px 50px', md: '80px 80px' }}
+                bgColor={'brand.secondaryBlack'}
+                minHeight="100vh"
+              >
+                {children}
+              </Box>
+            </>
           ) : (
             <>
               <Box
@@ -52,7 +105,7 @@ function Layout({ children }: Props) {
                 h={'100vh'}
                 w={'100vw'}
               >
-                <Text mx={'auto'}>Loading</Text>
+                <Text mx={'auto'}>Authenticating</Text>
               </Box>
             </>
           )}

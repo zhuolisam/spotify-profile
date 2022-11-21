@@ -9,7 +9,7 @@ import axios from 'axios';
 import { AuthContext } from 'providers/AuthContext';
 
 const Login: NextPage = () => {
-  const AUTH_URL = `https://accounts.spotify.com/authorize?response_type=code&client_id=0b655a2196a541f4a00f7467e8496d0a&response_type=code&redirect_uri=http://localhost:3000/login&scope=user-read-private%20user-top-read%20playlist-read-private%20playlist-read-collaborative%20user-read-recently-played&state=hello`;
+  const AUTH_URL = `https://accounts.spotify.com/authorize?response_type=code&client_id=0b655a2196a541f4a00f7467e8496d0a&response_type=code&redirect_uri=http://localhost:3000/login&scope=user-read-private%20user-top-read%20playlist-read-private%20playlist-read-collaborative%20user-read-recently-played%20user-follow-read&state=hello`;
 
   const router = useRouter();
 
@@ -19,6 +19,8 @@ const Login: NextPage = () => {
 
   useEffect(() => {
     console.log('useEffect from Login');
+    document.body.style.backgroundColor = 'white';
+
     if (authenticated) {
       console.log('authenticated from login');
       router.push('/');
@@ -34,8 +36,9 @@ const Login: NextPage = () => {
           code: router.query.code,
         })
         .then((res) => {
-          console.log('successful login: ', res);
-          window.localStorage.setItem('access_token', JSON.stringify(res.data));
+          console.log('successful login: ', res.data);
+          const token_data = { ...res.data, timestamp: Date.now() };
+          window.localStorage.setItem('access_token', JSON.stringify(token_data));
           setauthenticated(true);
           router.push('/');
         })
@@ -79,6 +82,7 @@ const Login: NextPage = () => {
           >
             Login
           </Button> */}
+          {/*TODO - Make the button become a loading spinner when authenticating*/}
           <Button mx={'auto'}>Login</Button>
         </Link>
       </Box>

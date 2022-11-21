@@ -8,32 +8,23 @@ type Props = {
 interface AppContextInterface {
   authenticated: boolean | false;
   setauthenticated: React.Dispatch<React.SetStateAction<boolean>>;
-  loading: boolean | true;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-  access_token: string | '';
-  setaccess_token: React.Dispatch<React.SetStateAction<string>>;
+  count: number | 0;
+  setcount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const AuthContext = createContext<AppContextInterface | null>(null);
+export const AuthContext = createContext<AppContextInterface | null>({
+  authenticated: false,
+  setauthenticated: () => {},
+  count: 0,
+  setcount: () => {},
+});
 
 const AuthProvider = ({ children }: Props) => {
   const [authenticated, setauthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [access_token, setaccess_token] = useState('');
-
-  const router = useRouter();
+  const [count, setcount] = useState(0);
 
   useEffect(() => {
     console.log('useEffect from AuthProvider');
-
-    if (window.localStorage.getItem('access_token')) {
-      setauthenticated(true);
-      return;
-    }
-    
-    if (!window.localStorage.getItem('access_token') && router.pathname !== '/login') {      
-      router.push('/login');
-    }
   });
 
   return (
@@ -42,10 +33,8 @@ const AuthProvider = ({ children }: Props) => {
         value={{
           authenticated,
           setauthenticated,
-          loading,
-          setLoading,
-          access_token,
-          setaccess_token,
+          count,
+          setcount,
         }}
       >
         {children}

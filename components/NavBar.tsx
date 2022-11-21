@@ -1,4 +1,4 @@
-import { Box, Image, Show, Text } from '@chakra-ui/react';
+import { Box, Image, Show, Hide, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -7,15 +7,16 @@ export default function NavBar() {
 
   return (
     <Box
+      as="nav"
       position="fixed"
-      w={{ base: '100vw', md: '6rem' }}
-      h={{ base: '70', md: '100vh' }}
-      maxH={'100vh'}
-      maxW={'100vw'}
+      w={{ base: '100%', md: '6rem' }}
+      h={{ base: '4.5rem', md: '100%' }}
+      maxH={'100%'}
+      maxW={'100%'}
       minH="70"
       bottom="0"
       zIndex={1}
-      backgroundColor="gray.900"
+      backgroundColor="brand.primaryBlack"
     >
       <Box
         w="100%"
@@ -25,62 +26,65 @@ export default function NavBar() {
         justifyContent="space-between"
         alignItems="center"
         textAlign="center"
-        fontSize={{ base: '10px', md: 'sm' }}
+        fontWeight="thin"
+        fontSize="0.7rem"
+        letterSpacing="tight"
       >
-        <Show above="md">
-          <Link href={'/'}>
-            <Box
-              boxSize=""
-              display="flex"
-              placeContent="center"
-              mt="20px"
-              cursor={'pointer'}
-              className="logo-box"
-            >
-              <Image
-                pt="5"
-                minW="3.5rem"
-                w="3.5rem"
-                h="auto"
-                src="/logo/spotify-logo-png-7053.png"
-                alt="Spotify Logo"
-                transition={'all 0.2s ease-in-out'}
-                sx={{
-                  '.logo-box:hover &': {
-                    filter: 'brightness(120%)',
-                  },
-                }}
-              />
-            </Box>
-          </Link>
-        </Show>
+        <Link href={'/'}>
+          <Box
+            boxSize=""
+            display={{ base: 'none', md: 'flex' }}
+            placeContent="center"
+            mt="20px"
+            cursor={'pointer'}
+            className="logo-box"
+          >
+            <Image
+              pt="5"
+              minW="3.5rem"
+              w="3.5rem"
+              h="auto"
+              src="/logo/spotify-logo-png-7053.png"
+              alt="Spotify Logo"
+              transition={'all 0.2s ease-in-out'}
+              sx={{
+                '.logo-box:hover &': {
+                  filter: 'brightness(120%)',
+                },
+              }}
+            />
+          </Box>
+        </Link>
         {/* NavBar Tabs */}
         <Box
           w="100%"
-          textColor={'gray.400'}
-          display={{ base: 'flex', md: 'block' }}
+          h={{ base: '100%', md: 'auto' }}
+          textColor={'brand.primaryGray'}
+          display={{ base: 'flex', md: 'flex' }}
           flexDirection={{ base: 'row', md: 'column' }}
           justifyContent={'space-between'}
-          alignItems={{ base: 'start', md: 'center' }}
+          alignItems={{ base: 'center', md: 'center' }}
           textAlign="center"
         >
           {/* Profile */}
           <Link href={'/'}>
             <Box
               w="100%"
+              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
-                borderColor: 'rgb(30, 215, 96)',
-                bg: 'gray.800',
+                borderColor: 'brand.spotifyGreen',
+                bg: 'brand.secondaryBlack',
                 textColor: 'white',
               }}
-              bg={pathname === '/' ? 'gray.800' : 'gray.900'}
-              // bg= {styleValue('/', ['gray.800', 'gray.900'])}
+              bg={
+                pathname === '/' ? 'brand.secondaryBlack' : 'brand.primaryBlack'
+              }
               borderLeft={{ base: '0', md: '5px solid' }}
               borderTop={{ base: '3px solid', md: '0' }}
               borderColor={{
-                base: pathname === '/' ? 'rgb(30, 215, 96)' : 'transparent',
-                md: pathname === '/' ? 'rgb(30, 215, 96)' : 'transparent',
+                base: pathname === '/' ? 'brand.spotifyGreen' : 'transparent',
+                md: pathname === '/' ? 'brand.spotifyGreen' : 'transparent',
               }}
               cursor={'pointer'}
               textColor={pathname === '/' ? 'white' : 'currentColor'}
@@ -92,7 +96,7 @@ export default function NavBar() {
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={'20px'}
+                py={"15px"}
               >
                 <svg
                   id="user-icon"
@@ -114,23 +118,32 @@ export default function NavBar() {
           </Link>
 
           {/* Top Artist */}
-          <Link href={'/'}>
+          <Link href={'/artists'}>
             <Box
               w="100%"
+              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
-                borderColor: 'rgb(30, 215, 96)',
-                bg: 'gray.800',
+                borderColor: 'brand.spotifyGreen',
+                bg: 'brand.secondaryBlack',
                 textColor: 'white',
               }}
-              bg={pathname === '/artists' ? 'gray.800' : 'gray.900'}
+              bg={
+                pathname === '/artists'
+                  ? 'brand.secondaryBlack'
+                  : 'brand.primaryBlack'
+              }
               borderLeft={{ base: '0', md: '5px solid' }}
               borderTop={{ base: '3px solid', md: '0' }}
               borderColor={{
                 base:
-                  pathname === '/artists' ? 'rgb(30, 215, 96)' : 'transparent',
+                  pathname === '/artists'
+                    ? 'brand.spotifyGreen'
+                    : 'transparent',
                 md:
-                  pathname === '/artists' ? 'rgb(30, 215, 96)' : 'transparent',
+                  pathname === '/artists'
+                    ? 'brand.spotifyGreen'
+                    : 'transparent',
               }}
               cursor={'pointer'}
               textColor={pathname === '/artists' ? 'white' : 'currentColor'}
@@ -142,7 +155,7 @@ export default function NavBar() {
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={'20px'}
+                py={"15px"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -166,19 +179,25 @@ export default function NavBar() {
           <Link href={'/tracks'}>
             <Box
               w="100%"
+              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
-                borderColor: 'rgb(30, 215, 96)',
-                bg: 'gray.800',
+                borderColor: 'brand.spotifyGreen',
+                bg: 'brand.secondaryBlack',
                 textColor: 'white',
               }}
-              bg={pathname === '/tracks' ? 'gray.800' : 'gray.900'}
+              bg={
+                pathname === '/tracks'
+                  ? 'brand.secondaryBlack'
+                  : 'brand.primaryBlack'
+              }
               borderLeft={{ base: '0', md: '5px solid' }}
               borderTop={{ base: '3px solid', md: '0' }}
               borderColor={{
                 base:
-                  pathname === '/tracks' ? 'rgb(30, 215, 96)' : 'transparent',
-                md: pathname === '/tracks' ? 'rgb(30, 215, 96)' : 'transparent',
+                  pathname === '/tracks' ? 'brand.spotifyGreen' : 'transparent',
+                md:
+                  pathname === '/tracks' ? 'brand.spotifyGreen' : 'transparent',
               }}
               cursor={'pointer'}
               textColor={pathname === '/tracks' ? 'white' : 'currentColor'}
@@ -190,7 +209,7 @@ export default function NavBar() {
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={'20px'}
+                py={"15px"}
               >
                 <svg
                   version="1.1"
@@ -207,22 +226,28 @@ export default function NavBar() {
             </Box>
           </Link>
           {/* Recent */}
-          <Link href={'/'}>
+          <Link href={'/recent'}>
             <Box
               w="100%"
+              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
-                borderColor: 'rgb(30, 215, 96)',
-                bg: 'gray.800',
+                borderColor: 'brand.spotifyGreen',
+                bg: 'brand.secondaryBlack',
                 textColor: 'white',
               }}
-              bg={pathname === '/recent' ? 'gray.800' : 'gray.900'}
+              bg={
+                pathname === '/recent'
+                  ? 'brand.secondaryBlack'
+                  : 'brand.primaryBlack'
+              }
               borderLeft={{ base: '0', md: '5px solid' }}
               borderTop={{ base: '3px solid', md: '0' }}
               borderColor={{
                 base:
-                  pathname === '/recent' ? 'rgb(30, 215, 96)' : 'transparent',
-                md: pathname === '/recent' ? 'rgb(30, 215, 96)' : 'transparent',
+                  pathname === '/recent' ? 'brand.spotifyGreen' : 'transparent',
+                md:
+                  pathname === '/recent' ? 'brand.spotifyGreen' : 'transparent',
               }}
               cursor={'pointer'}
               textColor={pathname === '/recent' ? 'white' : 'currentColor'}
@@ -234,7 +259,7 @@ export default function NavBar() {
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={'20px'}
+                py={"15px"}
               >
                 <svg
                   version="1.1"
@@ -256,27 +281,36 @@ export default function NavBar() {
             </Box>
           </Link>
 
-          {/* Playlist */}
-          <Link href={'/'}>
+          {/* playlists */}
+          <Link href={'/playlists'}>
             <Box
               w="100%"
+              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
-                borderColor: 'rgb(30, 215, 96)',
-                bg: 'gray.800',
+                borderColor: 'brand.spotifyGreen',
+                bg: 'brand.secondaryBlack',
                 textColor: 'white',
               }}
-              bg={pathname === '/playlist' ? 'gray.800' : 'gray.900'}
+              bg={
+                pathname === '/playlists'
+                  ? 'brand.secondaryBlack'
+                  : 'brand.primaryBlack'
+              }
               borderLeft={{ base: '0', md: '5px solid' }}
               borderTop={{ base: '3px solid', md: '0' }}
               borderColor={{
                 base:
-                  pathname === '/playlist' ? 'rgb(30, 215, 96)' : 'transparent',
+                  pathname === '/playlists'
+                    ? 'brand.spotifyGreen'
+                    : 'transparent',
                 md:
-                  pathname === '/playlist' ? 'rgb(30, 215, 96)' : 'transparent',
+                  pathname === '/playlists'
+                    ? 'brand.spotifyGreen'
+                    : 'transparent',
               }}
               cursor={'pointer'}
-              textColor={pathname === '/playlist' ? 'white' : 'currentColor'}
+              textColor={pathname === '/playlists' ? 'white' : 'currentColor'}
             >
               <Box
                 w="100%"
@@ -285,7 +319,7 @@ export default function NavBar() {
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={'20px'}
+                py={"15px"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -317,31 +351,30 @@ export default function NavBar() {
                     ></rect>
                   </g>
                 </svg>
-                <Text as="span">Playlist</Text>
+                <Text as="span">playlists</Text>
               </Box>
             </Box>
           </Link>
         </Box>
 
-        <Show above="md">
-          <Box
-            mb="20px"
-            cursor={'pointer'}
-            textColor={'gray.400'}
-            _hover={{ textColor: 'white' }}
-            transition = {'all 0.2s ease-in-out'}
+        <Box
+          display={{ base: 'none', md: 'block' }}
+          mb="20px"
+          cursor={'pointer'}
+          textColor={'gray.400'}
+          _hover={{ textColor: 'white' }}
+          transition={'all 0.2s ease-in-out'}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 496 512"
+            width="2rem"
+            height="auto"
+            fill="currentColor"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 496 512"
-              width="2rem"
-              height="auto"
-              fill="currentColor"
-            >
-              <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-            </svg>
-          </Box>
-        </Show>
+            <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+          </svg>
+        </Box>
       </Box>
     </Box>
   );
