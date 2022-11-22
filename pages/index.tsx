@@ -8,7 +8,7 @@ import {
   Image,
   GridItem,
 } from '@chakra-ui/react';
-  
+
 import { useEffect, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -102,7 +102,6 @@ const Home: NextPage = () => {
                 playlists: responses[3].data.total,
               });
             }
-            console.log('me-> ', me);
             setLoading(false);
           })
         )
@@ -300,31 +299,33 @@ const Home: NextPage = () => {
                           h="100%"
                           position="relative"
                         >
-                          <Image
-                            src={artist['images'][0]['url']}
-                            alt={artist['name']}
-                            boxSize="3rem"
-                            borderRadius="full"
-                            loading="lazy"
-                            objectFit={'cover'}
-                            _groupHover={{ opacity: '0.5' }}
-                            transition="all 0.2s ease-in-out"
-                          />
                           <Link href="/">
-                            <InfoButton
-                              position="absolute"
-                              right="0"
-                              left="0"
-                              top="0"
-                              bottom="0"
-                              opacity="0"
-                              mx="auto"
-                              my="auto"
-                              w="1.5rem"
-                              h="1.5rem"
-                              _groupHover={{ opacity: '1' }}
-                              transition="all 0.2s ease-in-out"
-                            />
+                            <>
+                              <Image
+                                src={artist['images'][0]['url']}
+                                alt={artist['name']}
+                                boxSize="3rem"
+                                borderRadius="full"
+                                loading="lazy"
+                                objectFit={'cover'}
+                                _groupHover={{ opacity: '0.5' }}
+                                transition="all 0.2s ease-in-out"
+                              />
+                              <InfoButton
+                                position="absolute"
+                                right="0"
+                                left="0"
+                                top="0"
+                                bottom="0"
+                                opacity="0"
+                                mx="auto"
+                                my="auto"
+                                w="1.5rem"
+                                h="1.5rem"
+                                _groupHover={{ opacity: '1' }}
+                                transition="all 0.2s ease-in-out"
+                              />
+                            </>
                           </Link>
                         </Box>
                         <Text
