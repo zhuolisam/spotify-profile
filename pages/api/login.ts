@@ -18,7 +18,7 @@ export default async function handler(
   const code = req.body.code;
 
   const spotifyAPI = new spotifyWebApi({
-    redirectUri: 'http://localhost:3000/login',
+    redirectUri: `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
     clientId: process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   });
