@@ -61,7 +61,6 @@ export default function Playlists() {
           <Box
             w="100%"
             color="brand.primaryWhite"
-            minW={'max-content'}
           >
             <Text
               as="h1"

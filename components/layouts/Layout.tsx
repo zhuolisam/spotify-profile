@@ -88,7 +88,7 @@ function Layout({ children }: Props) {
                 as="main"
                 ml={{ base: '0rem', md: '6rem' }}
                 mb={{ base: '4.5rem', md: '0rem' }}
-                padding={{ base: '60px 50px', md: '80px 80px' }}
+                padding={{ base: '30px 25px', sm: '60px 50px', md: '80px 80px' }}
                 bgColor={'brand.secondaryBlack'}
                 minHeight="100vh"
               >

@@ -19,7 +19,7 @@ export default async function handler(
 
   const spotifyAPI = new spotifyWebApi({
     redirectUri: `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
-    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientId: process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     refreshToken: refresh_tokenn,
   });

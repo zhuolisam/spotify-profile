@@ -7,6 +7,7 @@ import {
   Flex,
   Image,
   GridItem,
+  AspectRatio,
 } from '@chakra-ui/react';
 
 import { useEffect, useContext, useState } from 'react';
@@ -161,6 +162,7 @@ const Home: NextPage = () => {
                   fontSize={'5xl'}
                   fontWeight="bold"
                   lineHeight={'1.0'}
+                  textAlign={'center'}
                 >
                   {me.display_name}
                 </Text>
@@ -246,9 +248,11 @@ const Home: NextPage = () => {
                   LOGOUT
                 </Button>
               </Flex>
+
               {/* Bottom Part */}
-              <Grid
-                templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+              <Box
+                display={{ base: 'block', md: 'grid' }}
+                gridTemplateColumns={{ md: '1fr 1fr' }}
                 justifyContent="center"
                 gap="2rem"
               >
@@ -261,7 +265,7 @@ const Home: NextPage = () => {
                   >
                     <Text
                       as="h2"
-                      fontSize={'large'}
+                      fontSize={{ base: 'md', md: 'large' }}
                       fontWeight="bold"
                     >
                       Top Artists of All Time
@@ -273,7 +277,7 @@ const Home: NextPage = () => {
                       borderRadius={'full'}
                       letterSpacing="wide"
                       fontSize={'0.8em'}
-                      px={'2rem'}
+                      px={'1.5rem'}
                       _hover={{
                         bgColor: 'white',
                         color: 'brand.secondaryBlack',
@@ -343,7 +347,8 @@ const Home: NextPage = () => {
                 </GridItem>
 
                 {/* Top Tracks of All Time */}
-                <GridItem>
+                <GridItem
+                mt={{base:'5rem',md:'0'}}>
                   <Flex
                     justifyContent="space-between"
                     alignItems={'center'}
@@ -351,7 +356,7 @@ const Home: NextPage = () => {
                   >
                     <Text
                       as="h2"
-                      fontSize={'large'}
+                      fontSize={{ base: 'md', md: 'large' }}
                       fontWeight="bold"
                     >
                       Top Tracks of All Time
@@ -363,7 +368,7 @@ const Home: NextPage = () => {
                       borderRadius={'full'}
                       letterSpacing="wide"
                       fontSize={'0.8em'}
-                      px={'2rem'}
+                      px={'1.5rem'}
                       _hover={{
                         bgColor: 'white',
                         color: 'brand.secondaryBlack',
@@ -389,16 +394,20 @@ const Home: NextPage = () => {
                             h="100%"
                             position="relative"
                           >
-                            <Image
-                              src={track['album']['images'][0]['url']}
-                              alt={track['name']}
-                              h="100%"
-                              maxH="3rem"
-                              loading="lazy"
-                              objectFit={'cover'}
-                              _groupHover={{ opacity: '0.5' }}
-                              transition="all 0.2s ease-in-out"
-                            />
+                            <AspectRatio
+                              w={'3.2rem'}
+                              ratio={1}
+                              mx="auto"
+                            >
+                              <Image
+                                src={track['album']['images'][0]['url']}
+                                alt={track['name']}
+                                loading="lazy"
+                                objectFit={'cover'}
+                                _groupHover={{ opacity: '0.5' }}
+                                transition="all 0.2s ease-in-out"
+                              />
+                            </AspectRatio>
                             <InfoButton
                               position="absolute"
                               right="0"
@@ -416,24 +425,23 @@ const Home: NextPage = () => {
                           </GridItem>
                           <Grid
                             ml="1rem"
-                            templateColumns={'1fr max-content'}
-                            alignItems="center"
+                            gridTemplateColumns={'1fr max-content'}
+                            gap={'10px'}
                           >
-                            <Flex
-                              flexDir="column"
-                              justifyContent={'center'}
+                            <GridItem
+                              overflow={'hidden'}
+                              textOverflow={'ellipsis'}
+                              whiteSpace={'nowrap'}
+                              pr="1px"
                             >
-                              <Box w="max-content">
-                                <Text
-                                  fontSize={{ base: 'md', md: 'large' }}
-                                  textUnderlineOffset={'0.2em'}
-                                  textDecorationThickness={'1px'}
-                                  _hover={{ textDecor: 'underline' }}
-                                >
-                                  {track['name']}
-                                </Text>
-                              </Box>
-
+                              <Text
+                                fontSize={{ base: 'md', md: 'large' }}
+                                textUnderlineOffset={'0.2em'}
+                                textDecorationThickness={'1px'}
+                                _hover={{ textDecor: 'underline' }}
+                              >
+                                {track['name']}
+                              </Text>
                               <Text
                                 fontSize={'sm'}
                                 color="brand.primaryGray"
@@ -441,7 +449,7 @@ const Home: NextPage = () => {
                                 {track['artists'][0]['name']} ·{' '}
                                 {track['album']['name']}
                               </Text>
-                            </Flex>
+                            </GridItem>
                             <GridItem
                               ml="1rem"
                               fontSize={'sm'}
@@ -492,7 +500,7 @@ const Home: NextPage = () => {
                     ))}
                   </Flex>
                 </GridItem>
-              </Grid>
+              </Box>
             </Box>
           </>
         )}

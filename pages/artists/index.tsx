@@ -110,7 +110,6 @@ export default function TopArtist() {
           <Box
             w="100%"
             color="brand.primaryWhite"
-            minW={'max-content'}
           >
             <Box
               display={'flex'}
@@ -130,14 +129,13 @@ export default function TopArtist() {
                 mt={{ base: '2rem', md: '0' }}
                 display="flex"
                 justifyContent={{ base: 'space-around', md: 'flex-end' }}
-                mr="-15px"
+                mr={{ base: '0', md: '-15px' }}
+                fontSize={{ base: 'sm', md: 'md' }}
+                transition={'all 0.2s ease-in-out'}
               >
                 <Box
                   as="button"
-                  px="1rem"
-                  textDecoration={
-                    timeRange == TimeRange.LONG_TERM ? 'underline' : 'none'
-                  }
+                  px={{ base: '0', md: '0.6rem' }}
                   _hover={{
                     color: 'brand.primaryWhite',
                   }}
@@ -147,19 +145,23 @@ export default function TopArtist() {
                       ? 'brand.primaryWhite'
                       : 'brand.primaryGray'
                   }
-                  textUnderlineOffset={'0.2em'}
-                  textDecorationThickness={'1px'}
-                  transition={'all 0.2s ease-in-out'}
                   onClick={() => settimeRange(TimeRange.LONG_TERM)}
                 >
-                  All Time
+                  <Box
+                    as="span"
+                    pb="2px"
+                    borderBottom={
+                      timeRange == TimeRange.LONG_TERM
+                        ? '1px solid white'
+                        : 'none'
+                    }
+                  >
+                    All Time
+                  </Box>
                 </Box>
                 <Box
                   as="button"
-                  px="1rem"
-                  textDecoration={
-                    timeRange == TimeRange.MEDIUM_TERM ? 'underline' : 'none'
-                  }
+                  px={{ base: '0', md: '0.6rem' }}
                   _hover={{
                     color: 'brand.primaryWhite',
                   }}
@@ -169,19 +171,24 @@ export default function TopArtist() {
                       : 'brand.primaryGray'
                   }
                   cursor="pointer"
-                  textUnderlineOffset={'0.2em'}
-                  textDecorationThickness={'1px'}
                   transition={'all 0.2s ease-in-out'}
                   onClick={() => settimeRange(TimeRange.MEDIUM_TERM)}
                 >
-                  Last 6 Months
+                  <Box
+                    as="span"
+                    pb="2px"
+                    borderBottom={
+                      timeRange == TimeRange.MEDIUM_TERM
+                        ? '1px solid white'
+                        : 'none'
+                    }
+                  >
+                    Last 6 Months
+                  </Box>
                 </Box>
                 <Box
                   as="button"
-                  px="1rem"
-                  textDecoration={
-                    timeRange == TimeRange.SHORT_TERM ? 'underline' : 'none'
-                  }
+                  px={{ base: '0', md: '0.6rem' }}
                   _hover={{
                     color: 'brand.primaryWhite',
                   }}
@@ -191,12 +198,19 @@ export default function TopArtist() {
                       : 'brand.primaryGray'
                   }
                   cursor="pointer"
-                  textUnderlineOffset={'0.2em'}
-                  textDecorationThickness={'1px'}
-                  transition={'all 0.2s ease-in-out'}
                   onClick={() => settimeRange(TimeRange.SHORT_TERM)}
                 >
-                  Last 4 Weeks
+                  <Box
+                    as="span"
+                    pb="2px"
+                    borderBottom={
+                      timeRange == TimeRange.SHORT_TERM
+                        ? '1px solid white'
+                        : 'none'
+                    }
+                  >
+                    Last 4 Weeks
+                  </Box>
                 </Box>{' '}
                 {/*Last 4 Weeks */}
               </Box>
@@ -206,10 +220,11 @@ export default function TopArtist() {
             <Grid
               mt="3rem"
               templateColumns={{
-                base: 'repeat(auto-fit, minmax(9.5rem, 1fr))',
+                base: 'repeat(auto-fit, minmax(120px, 1fr))',
+                sm: 'repeat(auto-fit, minmax(10rem, 1fr))',
                 md: 'repeat(auto-fit, minmax(12.5rem, 1fr))',
               }}
-              gap="2rem"
+              gap="1.25rem"
               textAlign="center"
               fontSize={'md'}
             >
@@ -224,7 +239,7 @@ export default function TopArtist() {
                     <Link href="#">
                       <>
                         <AspectRatio
-                          w={{ base: '9.5rem', md: '12.5rem' }}
+                          w={{ base: '120px', md: '12.5rem' }}
                           ratio={1}
                           mx="auto"
                         >

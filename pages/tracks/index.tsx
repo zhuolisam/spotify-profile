@@ -111,7 +111,6 @@ export default function TopTracks() {
           <Box
             w="100%"
             color="brand.primaryWhite"
-            minW={'max-content'}
           >
             <Box
               display={'flex'}
