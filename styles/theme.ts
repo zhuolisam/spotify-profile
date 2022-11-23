@@ -25,14 +25,15 @@ const theme = extendTheme({
       primaryWhite: 'rgb(255,255,255)',
       primaryGray: 'rgb(155,155,155)',
       spotifyGreen: 'rgb(30,215,96)',
+      primaryBlue: 'rgb(80, 155, 245)',
     },
   },
-  fontWeights:{
+  fontWeights: {
     thin: 450,
     normal: 500,
     bold: 700,
     extrabold: 900,
-  }
+  },
 });
 
 export default theme;

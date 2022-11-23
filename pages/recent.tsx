@@ -10,7 +10,7 @@ import { milliToMinutes } from 'lib/helpers/helperUtils';
 
 export default function Recent() {
   // @ts-ignore
-  const { authenticated, setauthenticated } = useContext(AuthContext);
+  const { authenticated } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(true);
   const [recentTracks, setrecentTracks] = useState<any[]>([]);
@@ -33,7 +33,7 @@ export default function Recent() {
           headers,
         })
         .then((res) => {
-          console.log(res.data.items);
+          // console.log(res.data.items);
           if (recentTracks.length === 0) {
             setrecentTracks(res.data.items);
           }

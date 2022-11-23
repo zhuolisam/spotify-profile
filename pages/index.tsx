@@ -7,7 +7,6 @@ import {
   Flex,
   Image,
   GridItem,
-  AspectRatio,
 } from '@chakra-ui/react';
 
 import { useEffect, useContext, useState } from 'react';
@@ -299,45 +298,45 @@ const Home: NextPage = () => {
                         cursor={'pointer'}
                         role="group"
                       >
-                        <Box position="relative">
-                          <Link href="/">
-                            <>
-                              <Image
-                                src={artist['images'][0]['url']}
-                                alt={artist['name']}
-                                boxSize="3.2rem"
-                                borderRadius="full"
-                                loading="lazy"
-                                objectFit={'cover'}
-                                _groupHover={{ opacity: '0.5' }}
-                                transition="all 0.2s ease-in-out"
-                              />
-                              <InfoButton
-                                position="absolute"
-                                right="0"
-                                left="0"
-                                top="0"
-                                bottom="0"
-                                opacity="0"
-                                mx="auto"
-                                my="auto"
-                                w="1.5rem"
-                                h="1.5rem"
-                                _groupHover={{ opacity: '1' }}
-                                transition="all 0.2s ease-in-out"
-                              />
-                            </>
-                          </Link>
-                        </Box>
-                        <Text
-                          textUnderlineOffset={'0.2em'}
-                          textDecorationThickness={'1px'}
-                          _hover={{ textDecoration: 'underline' }}
-                          transition="all 0.2s ease-in-out"
-                          ml="1rem"
-                        >
-                          {artist['name']}
-                        </Text>
+                        <Link href={`/artists/${artist['id']}`}>
+                          <Box position="relative">
+                            <Image
+                              src={artist['images'][0]['url']}
+                              alt={artist['name']}
+                              boxSize="3.2rem"
+                              borderRadius="full"
+                              loading="lazy"
+                              objectFit={'cover'}
+                              _groupHover={{ opacity: '0.5' }}
+                              transition="all 0.2s ease-in-out"
+                            />
+                            <InfoButton
+                              position="absolute"
+                              right="0"
+                              left="0"
+                              top="0"
+                              bottom="0"
+                              opacity="0"
+                              mx="auto"
+                              my="auto"
+                              w="1.5rem"
+                              h="1.5rem"
+                              _groupHover={{ opacity: '1' }}
+                              transition="all 0.2s ease-in-out"
+                            />
+                          </Box>
+                        </Link>
+                        <Link href={`/artists/${artist['id']}`}>
+                          <Text
+                            textUnderlineOffset={'0.2em'}
+                            textDecorationThickness={'1px'}
+                            _hover={{ textDecoration: 'underline' }}
+                            transition="all 0.2s ease-in-out"
+                            ml="1rem"
+                          >
+                            {artist['name']}
+                          </Text>
+                        </Link>
                       </Flex>
                     ))}
                   </Flex>

@@ -5,7 +5,6 @@ import {
   Grid,
   GridItem,
   Image,
-  AspectRatio,
 } from '@chakra-ui/react';
 import axios from 'axios';
 
