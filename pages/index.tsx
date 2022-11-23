@@ -299,16 +299,13 @@ const Home: NextPage = () => {
                         cursor={'pointer'}
                         role="group"
                       >
-                        <Box
-                          h="100%"
-                          position="relative"
-                        >
+                        <Box position="relative">
                           <Link href="/">
                             <>
                               <Image
                                 src={artist['images'][0]['url']}
                                 alt={artist['name']}
-                                boxSize="3rem"
+                                boxSize="3.2rem"
                                 borderRadius="full"
                                 loading="lazy"
                                 objectFit={'cover'}
@@ -347,8 +344,7 @@ const Home: NextPage = () => {
                 </GridItem>
 
                 {/* Top Tracks of All Time */}
-                <GridItem
-                mt={{base:'5rem',md:'0'}}>
+                <GridItem mt={{ base: '5rem', md: '0' }}>
                   <Flex
                     justifyContent="space-between"
                     alignItems={'center'}
@@ -390,24 +386,16 @@ const Home: NextPage = () => {
                           cursor={'pointer'}
                           role="group"
                         >
-                          <GridItem
-                            h="100%"
-                            position="relative"
-                          >
-                            <AspectRatio
-                              w={'3.2rem'}
-                              ratio={1}
-                              mx="auto"
-                            >
-                              <Image
-                                src={track['album']['images'][0]['url']}
-                                alt={track['name']}
-                                loading="lazy"
-                                objectFit={'cover'}
-                                _groupHover={{ opacity: '0.5' }}
-                                transition="all 0.2s ease-in-out"
-                              />
-                            </AspectRatio>
+                          <GridItem position="relative">
+                            <Image
+                              src={track['album']['images'][0]['url']}
+                              alt={track['name']}
+                              boxSize="3.2rem"
+                              loading="lazy"
+                              objectFit={'cover'}
+                              _groupHover={{ opacity: '0.5' }}
+                              transition="all 0.2s ease-in-out"
+                            />
                             <InfoButton
                               position="absolute"
                               right="0"
@@ -459,43 +447,6 @@ const Home: NextPage = () => {
                             </GridItem>
                           </Grid>
                         </Grid>
-
-                        {/* <Flex
-                          key={index}
-                          width="100%"
-                          justifyContent={'left'}
-                          alignItems="center"
-                        >
-                          <Image
-                            src={track['album']['images'][0]['url']}
-                            alt={track['name']}
-                            h="100%"
-                            maxH="4rem"
-                          />
-                          <Flex
-                            h="100%"
-                            justifyContent={'space-between'}
-                            alignItems="center"
-                          >
-                            <Box h="100%">
-                              <Text ml="1rem">{track['name']}</Text>
-                              <Text
-                                fontSize={'xs'}
-                                ml="1rem"
-                                color="brand.primaryGray"
-                              >
-                                {track['artists'][0]['name']} ·{' '}
-                                {track['album']['name']}
-                              </Text>
-                            </Box>
-                            <Text
-                              ml="1rem"
-                              color="brand.primaryGray"
-                            >
-                              {milliToMinutes(track['duration_ms'])}
-                            </Text>
-                          </Flex>
-                        </Flex> */}
                       </>
                     ))}
                   </Flex>

@@ -73,8 +73,12 @@ export default function Playlists() {
             </Text>
             <Grid
               mt="3rem"
-              templateColumns={'repeat(auto-fit, minmax(12.5rem, 1fr))'}
-              gap="1.8rem"
+              templateColumns={{
+                base: 'repeat(auto-fit, minmax(7.5rem, 1fr))',
+                sm: 'repeat(auto-fit, minmax(10rem, 1fr))',
+                md: 'repeat(auto-fit, minmax(12.5rem, 1fr))',
+              }}
+              gap="1.25rem"
               textAlign="center"
               fontSize={'md'}
             >
@@ -85,9 +89,12 @@ export default function Playlists() {
                     <Image
                       src={playlist['images'][0]['url']}
                       alt={playlist['name']}
+                      boxSize={{ base: '7.5rem', md: '12.5rem' }}
+                      objectFit="cover"
                       cursor="pointer"
                       _hover={{ opacity: '0.6' }}
                       transition={'all 0.2s ease-in-out'}
+                      mx="auto"
                     />
                   </Link>
                   <Text

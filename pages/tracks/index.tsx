@@ -5,7 +5,6 @@ import {
   Grid,
   GridItem,
   Image,
-  AspectRatio,
   Flex,
 } from '@chakra-ui/react';
 import axios from 'axios';
@@ -124,20 +123,19 @@ export default function TopTracks() {
                 fontWeight="extrabold"
                 lineHeight={'1.0'}
               >
-                Top Artists
+                Top Tracks
               </Text>
               <Box
                 mt={{ base: '2rem', md: '0' }}
                 display="flex"
                 justifyContent={{ base: 'space-around', md: 'flex-end' }}
-                mr='-15px'
+                mr={{ base: '0', md: '-15px' }}
+                fontSize={{ base: 'sm', md: 'md' }}
+                transition={'all 0.2s ease-in-out'}
               >
                 <Box
                   as="button"
-                  px="1rem"
-                  textDecoration={
-                    timeRange == TimeRange.LONG_TERM ? 'underline' : 'none'
-                  }
+                  px={{ base: '0', md: '0.6rem' }}
                   _hover={{
                     color: 'brand.primaryWhite',
                   }}
@@ -147,19 +145,23 @@ export default function TopTracks() {
                       ? 'brand.primaryWhite'
                       : 'brand.primaryGray'
                   }
-                  textUnderlineOffset={'0.2em'}
-                  textDecorationThickness={'1px'}
-                  transition={'all 0.2s ease-in-out'}
                   onClick={() => settimeRange(TimeRange.LONG_TERM)}
                 >
-                  All Time
+                  <Box
+                    as="span"
+                    pb={{ base: '0px', md: '2px' }}
+                    borderBottom={
+                      timeRange == TimeRange.LONG_TERM
+                        ? '1px solid white'
+                        : 'transparent'
+                    }
+                  >
+                    All Time
+                  </Box>
                 </Box>
                 <Box
                   as="button"
-                  px="1rem"
-                  textDecoration={
-                    timeRange == TimeRange.MEDIUM_TERM ? 'underline' : 'none'
-                  }
+                  px={{ base: '0', md: '0.6rem' }}
                   _hover={{
                     color: 'brand.primaryWhite',
                   }}
@@ -169,19 +171,24 @@ export default function TopTracks() {
                       : 'brand.primaryGray'
                   }
                   cursor="pointer"
-                  textUnderlineOffset={'0.2em'}
-                  textDecorationThickness={'1px'}
                   transition={'all 0.2s ease-in-out'}
                   onClick={() => settimeRange(TimeRange.MEDIUM_TERM)}
                 >
-                  Last 6 Months
+                  <Box
+                    as="span"
+                    pb={{ base: '0px', md: '2px' }}
+                    borderBottom={
+                      timeRange == TimeRange.MEDIUM_TERM
+                        ? '1px solid white'
+                        : 'none'
+                    }
+                  >
+                    Last 6 Months
+                  </Box>
                 </Box>
                 <Box
                   as="button"
-                  px="1rem"
-                  textDecoration={
-                    timeRange == TimeRange.SHORT_TERM ? 'underline' : 'none'
-                  }
+                  px={{ base: '0', md: '0.6rem' }}
                   _hover={{
                     color: 'brand.primaryWhite',
                   }}
@@ -191,12 +198,19 @@ export default function TopTracks() {
                       : 'brand.primaryGray'
                   }
                   cursor="pointer"
-                  textUnderlineOffset={'0.2em'}
-                  textDecorationThickness={'1px'}
-                  transition={'all 0.2s ease-in-out'}
                   onClick={() => settimeRange(TimeRange.SHORT_TERM)}
                 >
-                  Last 4 Weeks
+                  <Box
+                    as="span"
+                    pb={{ base: '0px', md: '2px' }}
+                    borderBottom={
+                      timeRange == TimeRange.SHORT_TERM
+                        ? '1px solid white'
+                        : 'none'
+                    }
+                  >
+                    Last 4 Weeks
+                  </Box>
                 </Box>{' '}
                 {/*Last 4 Weeks */}
               </Box>
@@ -204,7 +218,7 @@ export default function TopTracks() {
             </Box>
             {/* Header */}
             <Flex
-              mt="3rem"
+            mt='3rem'
               flexDir="column"
               gap="2rem"
             >
@@ -217,15 +231,11 @@ export default function TopTracks() {
                     cursor={'pointer'}
                     role="group"
                   >
-                    <GridItem
-                      h="100%"
-                      position="relative"
-                    >
+                    <GridItem position="relative">
                       <Image
                         src={track['album']['images'][0]['url']}
                         alt={track['name']}
-                        h="100%"
-                        maxH="3.125rem"
+                        boxSize="3.2rem"
                         loading="lazy"
                         objectFit={'cover'}
                         _groupHover={{ opacity: '0.5' }}
@@ -248,24 +258,23 @@ export default function TopTracks() {
                     </GridItem>
                     <Grid
                       ml="1rem"
-                      templateColumns={'1fr max-content'}
-                      alignItems="center"
+                      gridTemplateColumns={'1fr max-content'}
+                      gap={'10px'}
                     >
-                      <Flex
-                        flexDir="column"
-                        justifyContent={'center'}
+                      <GridItem
+                        overflow={'hidden'}
+                        textOverflow={'ellipsis'}
+                        whiteSpace={'nowrap'}
+                        pr="1px"
                       >
-                        <Box w="max-content">
-                          <Text
-                            fontSize={{ base: 'md', md: 'large' }}
-                            textUnderlineOffset={'0.2em'}
-                            textDecorationThickness={'1px'}
-                            _hover={{ textDecor: 'underline' }}
-                          >
-                            {track['name']}
-                          </Text>
-                        </Box>
-
+                        <Text
+                          fontSize={{ base: 'md', md: 'large' }}
+                          textUnderlineOffset={'0.2em'}
+                          textDecorationThickness={'1px'}
+                          _hover={{ textDecor: 'underline' }}
+                        >
+                          {track['name']}
+                        </Text>
                         <Text
                           fontSize={'sm'}
                           color="brand.primaryGray"
@@ -273,7 +282,7 @@ export default function TopTracks() {
                           {track['artists'][0]['name']} ·{' '}
                           {track['album']['name']}
                         </Text>
-                      </Flex>
+                      </GridItem>
                       <GridItem
                         ml="1rem"
                         fontSize={'sm'}

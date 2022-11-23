@@ -149,11 +149,11 @@ export default function TopArtist() {
                 >
                   <Box
                     as="span"
-                    pb="2px"
+                    pb={{ base: '0px', md: '2px' }}
                     borderBottom={
                       timeRange == TimeRange.LONG_TERM
                         ? '1px solid white'
-                        : 'none'
+                        : 'transparent'
                     }
                   >
                     All Time
@@ -176,7 +176,7 @@ export default function TopArtist() {
                 >
                   <Box
                     as="span"
-                    pb="2px"
+                    pb={{ base: '0px', md: '2px' }}
                     borderBottom={
                       timeRange == TimeRange.MEDIUM_TERM
                         ? '1px solid white'
@@ -202,7 +202,7 @@ export default function TopArtist() {
                 >
                   <Box
                     as="span"
-                    pb="2px"
+                    pb={{ base: '0px', md: '2px' }}
                     borderBottom={
                       timeRange == TimeRange.SHORT_TERM
                         ? '1px solid white'
@@ -238,21 +238,17 @@ export default function TopArtist() {
                   >
                     <Link href="#">
                       <>
-                        <AspectRatio
-                          w={{ base: '120px', md: '12.5rem' }}
-                          ratio={1}
-                          mx="auto"
-                        >
                           <Image
                             src={artist['images'][0]['url']}
                             alt={artist['name']}
+                            boxSize={{ base: '7.5rem', md: '12.5rem' }}
                             objectFit="cover"
                             borderRadius="full"
                             _hover={{ opacity: '0.6' }}
                             _groupHover={{ opacity: '0.6' }}
                             transition={'all 0.2s ease-in-out'}
+                            mx="auto"
                           />
-                        </AspectRatio>
                         <InfoButton
                           position="absolute"
                           right="0"

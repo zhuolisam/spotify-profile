@@ -36,7 +36,6 @@ const Login: NextPage = () => {
           code: router.query.code,
         })
         .then((res) => {
-          console.log('res from login: ', res);
           const token_data = { ...res.data, timestamp: Date.now() };
           window.localStorage.setItem('access_token', JSON.stringify(token_data));
           setauthenticated(true);
