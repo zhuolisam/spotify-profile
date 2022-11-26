@@ -19,7 +19,6 @@ type Artist = {
 };
 
 export default function TopArtist() {
-  // @ts-ignore
   const { authenticated} = useContext(AuthContext);
   const router = useRouter();
 
@@ -35,8 +34,6 @@ export default function TopArtist() {
       const token = JSON.parse(
         window.localStorage.getItem('access_token') || ''
       );
-
-      console.log(artist_id);
 
       const headers = {
         Authorization: `Bearer ${token?.access_token}`,
@@ -61,7 +58,7 @@ export default function TopArtist() {
         });
       setLoading(false);
     }
-  }, []);
+  });
 
   return (
     <>
@@ -92,6 +89,7 @@ export default function TopArtist() {
                 borderRadius={'full'}
                 src={artist?.images[0]?.url}
                 alt={artist?.name.toString()}
+                loading="lazy"
                 objectFit="cover"
                 mx="auto"
               ></Image>

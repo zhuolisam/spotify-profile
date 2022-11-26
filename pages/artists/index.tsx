@@ -1,11 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import {
-  Box,
-  Text,
-  Grid,
-  GridItem,
-  Image,
-} from '@chakra-ui/react';
+import { Box, Text, Grid, GridItem, Image } from '@chakra-ui/react';
 import axios from 'axios';
 
 import { AuthContext } from 'providers/AuthContext';
@@ -27,7 +21,7 @@ enum TimeRange {
 
 export default function TopArtist() {
   // @ts-ignore
-  const { authenticated, setauthenticated } = useContext(AuthContext);
+  const { authenticated } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(true);
   const [artists, setArtists] = useState<ArtistsList>({
@@ -230,52 +224,52 @@ export default function TopArtist() {
               {artists[timeRange].map((artist, index) => (
                 <GridItem key={index}>
                   {/* TODO: add link to artist*/}
-                  <Box
-                    position="relative"
-                    role="group"
-                    cursor="pointer"
-                  >
-                    <Link href="#">
-                      <>
-                          <Image
-                            src={artist['images'][0]['url']}
-                            alt={artist['name']}
-                            boxSize={{ base: '7.5rem', md: '12.5rem' }}
-                            objectFit="cover"
-                            borderRadius="full"
-                            _hover={{ opacity: '0.6' }}
-                            _groupHover={{ opacity: '0.6' }}
-                            transition={'all 0.2s ease-in-out'}
-                            mx="auto"
-                          />
-                        <InfoButton
-                          position="absolute"
-                          right="0"
-                          left="0"
-                          top="0"
-                          bottom="0"
-                          opacity="0"
-                          mx="auto"
-                          my="auto"
-                          w="2rem"
-                          h="2rem"
-                          _groupHover={{ opacity: '1' }}
-                          transition="all 0.2s ease-in-out"
-                        />
-                      </>
-                    </Link>
-                  </Box>
-                  <Text
-                    mt="1rem"
-                    lineHeight={'1.2'}
-                    cursor="pointer"
-                    textUnderlineOffset={'0.2em'}
-                    textDecorationThickness={'1px'}
-                    _hover={{ textDecor: 'underline' }}
-                    transition={'all 0.2s ease-in-out'}
-                  >
-                    {artist['name']}
-                  </Text>
+                  <Link href={`/artists/${artist['id']}`}>
+                    <Box
+                      position="relative"
+                      role="group"
+                      cursor="pointer"
+                    >
+                      <Image
+                        src={artist['images'][0]['url']}
+                        alt={artist['name']}
+                        boxSize={{ base: '7.5rem', md: '12.5rem' }}
+                        objectFit="cover"
+                        borderRadius="full"
+                        _hover={{ opacity: '0.6' }}
+                        _groupHover={{ opacity: '0.6' }}
+                        transition={'all 0.2s ease-in-out'}
+                        mx="auto"
+                      />
+                      <InfoButton
+                        position="absolute"
+                        right="0"
+                        left="0"
+                        top="0"
+                        bottom="0"
+                        opacity="0"
+                        mx="auto"
+                        my="auto"
+                        w="2rem"
+                        h="2rem"
+                        _groupHover={{ opacity: '1' }}
+                        transition="all 0.2s ease-in-out"
+                      />
+                    </Box>
+                  </Link>
+                  <Link href={`/artists/${artist['id']}`}>
+                    <Text
+                      mt="1rem"
+                      lineHeight={'1.2'}
+                      cursor="pointer"
+                      textUnderlineOffset={'0.2em'}
+                      textDecorationThickness={'1px'}
+                      _hover={{ textDecor: 'underline' }}
+                      transition={'all 0.2s ease-in-out'}
+                    >
+                      {artist['name']}
+                    </Text>
+                  </Link>
                 </GridItem>
               ))}
             </Grid>

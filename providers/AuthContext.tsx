@@ -12,7 +12,7 @@ interface AppContextInterface {
   setcount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const AuthContext = createContext<AppContextInterface | null>({
+export const AuthContext = createContext<AppContextInterface>({
   authenticated: false,
   setauthenticated: () => {},
   count: 0,

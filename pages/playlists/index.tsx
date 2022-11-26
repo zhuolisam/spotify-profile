@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 export default function Playlists() {
   // @ts-ignore
-  const { authenticated, setauthenticated } = useContext(AuthContext);
+  const { authenticated} = useContext(AuthContext);
 
   const [loading, setLoading] = useState(true);
   const [playlists, setplaylists] = useState<any[]>([]);

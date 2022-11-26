@@ -21,8 +21,7 @@ import InfoButton from 'components/InfoButton';
 import Link from 'next/link';
 
 const Home: NextPage = () => {
-  // @ts-ignore
-  const { authenticated, setauthenticated } = useContext(AuthContext);
+  const { authenticated,setauthenticated} = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -39,8 +38,7 @@ const Home: NextPage = () => {
   const [topArtists, settopArtists] = useState([]);
 
   useEffect(() => {
-    console.log('useEffect from Index');
-
+    console.log('useEffect from home');
     if (authenticated) {
       const token = JSON.parse(
         window.localStorage.getItem('access_token') || ''
@@ -103,13 +101,14 @@ const Home: NextPage = () => {
               });
             }
             setLoading(false);
+            console.log(topTracks);
           })
         )
         .catch((err) => {
           console.error(err);
         });
     }
-  });
+  },);
 
   const logOut = () => {
     window.localStorage.removeItem('access_token');
