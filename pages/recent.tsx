@@ -80,7 +80,7 @@ export default function Recent() {
               templateColumns={'1fr'}
               gap="2rem"
             >
-              {recentTracks.slice(0, 10).map((track, index) => {
+              {recentTracks.slice(0, 20).map((track, index) => {
                 return (
                   <Grid
                     key={index}
