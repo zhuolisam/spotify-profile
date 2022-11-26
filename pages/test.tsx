@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
-import { Box, Container, Grid, Text, Button } from '@chakra-ui/react';
-import { useState, useEffect, useContext } from 'react';
+import { Box,  Text, Button } from '@chakra-ui/react';
+import { useContext } from 'react';
 
 import { AuthContext } from 'providers/AuthContext';
 import Counter from 'components/Counter';
@@ -9,10 +9,6 @@ import Counter from 'components/Counter';
 const Login: NextPage = () => {
   // @ts-ignore
   const { count, setcount } = useContext(AuthContext);
-
-  useEffect(() => {
-    console.log('useEffect from test');
-  });
 
   return (
     <>

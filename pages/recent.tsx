@@ -16,7 +16,6 @@ export default function Recent() {
   const [recentTracks, setrecentTracks] = useState<any[]>([]);
 
   useEffect(() => {
-    console.log('useEffect from Recent.tsx');
 
     if (authenticated) {
       const token = JSON.parse(

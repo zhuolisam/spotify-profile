@@ -18,7 +18,6 @@ const Login: NextPage = () => {
   const [authenticating, setAuthenticating] = useState(false);
 
   useEffect(() => {
-    console.log('useEffect from Login');
     document.body.style.backgroundColor = 'white';
 
     if (authenticated) {

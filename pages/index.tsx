@@ -39,7 +39,6 @@ const Home: NextPage = () => {
   const [topArtists, settopArtists] = useState([]);
 
   useEffect(() => {
-    console.log('useEffect from home');
     if (authenticated) {
       const token = JSON.parse(
         window.localStorage.getItem('access_token') || ''

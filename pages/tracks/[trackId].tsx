@@ -170,7 +170,6 @@ export default function TopArtist() {
                 valence: responses[2].data.valence,
               });
             }
-            console.log('erm', audioAnalysis);
             setLoading(false);
           })
         )

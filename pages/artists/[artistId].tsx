@@ -26,7 +26,6 @@ export default function TopArtist() {
   const [artist, setArtist] = useState<Artist | null>(null);
 
   useEffect(() => {
-    console.log('useEffect from topArtist');
 
     const artist_id = router.query.artistId;
 
