@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useRouter } from 'next/router';
-import { Box, Grid, GridItem, Text, Image, Flex } from '@chakra-ui/react';
+import { Box, Grid, GridItem, Text, Image} from '@chakra-ui/react';
 import axios from 'axios';
 
 import Layout from 'components/layouts/Layout';

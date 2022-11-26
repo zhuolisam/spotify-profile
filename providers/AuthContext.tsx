@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router';
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext } from 'react';
 
 type Props = {
   children?: React.ReactNode;
@@ -22,7 +21,6 @@ export const AuthContext = createContext<AppContextInterface>({
 const AuthProvider = ({ children }: Props) => {
   const [authenticated, setauthenticated] = useState(false);
   const [count, setcount] = useState(0);
-
 
   return (
     <>

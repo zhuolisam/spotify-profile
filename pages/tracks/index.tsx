@@ -22,7 +22,7 @@ enum TimeRange {
 
 export default function TopTracks() {
   // @ts-ignore
-  const { authenticated, setauthenticated } = useContext(AuthContext);
+  const { authenticated } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(true);
   const [tracks, setTracks] = useState<TracksList>({

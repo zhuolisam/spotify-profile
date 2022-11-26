@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Box, Text, Image, Button, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Text, Image, Button, Grid} from '@chakra-ui/react';
 import axios from 'axios';
 
 import { AuthContext } from 'providers/AuthContext';

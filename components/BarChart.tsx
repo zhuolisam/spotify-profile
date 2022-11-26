@@ -106,6 +106,7 @@ function BarChart({
     const ctx = canvas.current;
 
     // eslint-disable-next-line no-unused-vars
+    // @ts-ignore
     const chart = new Chart(ctx, {
       ...config(chartData),
       options: {
