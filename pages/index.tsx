@@ -21,7 +21,7 @@ import InfoButton from 'components/InfoButton';
 import Link from 'next/link';
 
 const Home: NextPage = () => {
-  const { authenticated,setauthenticated} = useContext(AuthContext);
+  const { authenticated, setauthenticated } = useContext(AuthContext);
 
   const router = useRouter();
 
@@ -32,6 +32,7 @@ const Home: NextPage = () => {
     following: 0,
     followers: 0,
     playlists: 0,
+    external_url: '',
   });
 
   const [topTracks, settopTracks] = useState([]);
@@ -98,6 +99,7 @@ const Home: NextPage = () => {
                 images: responses[2].data.images[0].url as string,
                 following: responses[4].data.artists.total,
                 playlists: responses[3].data.total,
+                external_url: responses[2].data.external_urls.spotify,
               });
             }
             setLoading(false);
@@ -108,7 +110,7 @@ const Home: NextPage = () => {
           console.error(err);
         });
     }
-  },);
+  });
 
   const logOut = () => {
     window.localStorage.removeItem('access_token');
@@ -156,14 +158,23 @@ const Home: NextPage = () => {
                     loading="lazy"
                   ></Image>
                 </Box>
-                <Text
-                  fontSize={'5xl'}
-                  fontWeight="bold"
-                  lineHeight={'1.0'}
-                  textAlign={'center'}
+                <a
+                  href={me.external_url}
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  {me.display_name}
-                </Text>
+                  <Text
+                    fontSize={'5xl'}
+                    fontWeight="bold"
+                    lineHeight={'1.0'}
+                    textAlign={'center'}
+                    cursor="pointer"
+                    _hover={{ color: 'brand.spotifyGreen' }}
+                    transition="all 0.2s ease-in-out"
+                  >
+                    {me.display_name}
+                  </Text>
+                </a>
                 <Flex
                   gap="2rem"
                   mb="0.5rem"
@@ -377,74 +388,76 @@ const Home: NextPage = () => {
                   >
                     {topTracks.slice(0, 10).map((track, index) => (
                       <>
-                        <Grid
-                          key={index}
-                          templateColumns={'auto 1fr'}
-                          alignItems="center"
-                          cursor={'pointer'}
-                          role="group"
-                        >
-                          <GridItem position="relative">
-                            <Image
-                              src={track['album']['images'][0]['url']}
-                              alt={track['name']}
-                              boxSize="3.2rem"
-                              loading="lazy"
-                              objectFit={'cover'}
-                              _groupHover={{ opacity: '0.5' }}
-                              transition="all 0.2s ease-in-out"
-                            />
-                            <InfoButton
-                              position="absolute"
-                              right="0"
-                              left="0"
-                              top="0"
-                              bottom="0"
-                              opacity="0"
-                              mx="auto"
-                              my="auto"
-                              w="1.5rem"
-                              h="1.5rem"
-                              _groupHover={{ opacity: '1' }}
-                              transition="all 0.2s ease-in-out"
-                            />
-                          </GridItem>
+                        <Link href={`tracks/${track['id']}`}>
                           <Grid
-                            ml="1rem"
-                            gridTemplateColumns={'1fr max-content'}
-                            gap={'10px'}
+                            key={index}
+                            templateColumns={'auto 1fr'}
+                            alignItems="center"
+                            cursor={'pointer'}
+                            role="group"
                           >
-                            <GridItem
-                              overflow={'hidden'}
-                              textOverflow={'ellipsis'}
-                              whiteSpace={'nowrap'}
-                              pr="1px"
+                            <GridItem position="relative">
+                              <Image
+                                src={track['album']['images'][0]['url']}
+                                alt={track['name']}
+                                boxSize="3.2rem"
+                                loading="lazy"
+                                objectFit={'cover'}
+                                _groupHover={{ opacity: '0.5' }}
+                                transition="all 0.2s ease-in-out"
+                              />
+                              <InfoButton
+                                position="absolute"
+                                right="0"
+                                left="0"
+                                top="0"
+                                bottom="0"
+                                opacity="0"
+                                mx="auto"
+                                my="auto"
+                                w="1.5rem"
+                                h="1.5rem"
+                                _groupHover={{ opacity: '1' }}
+                                transition="all 0.2s ease-in-out"
+                              />
+                            </GridItem>
+                            <Grid
+                              ml="1rem"
+                              gridTemplateColumns={'1fr max-content'}
+                              gap={'10px'}
                             >
-                              <Text
-                                fontSize={{ base: 'md', md: 'large' }}
-                                textUnderlineOffset={'0.2em'}
-                                textDecorationThickness={'1px'}
-                                _hover={{ textDecor: 'underline' }}
+                              <GridItem
+                                overflow={'hidden'}
+                                textOverflow={'ellipsis'}
+                                whiteSpace={'nowrap'}
+                                pr="1px"
                               >
-                                {track['name']}
-                              </Text>
-                              <Text
+                                <Text
+                                  fontSize={{ base: 'md', md: 'large' }}
+                                  textUnderlineOffset={'0.2em'}
+                                  textDecorationThickness={'1px'}
+                                  _hover={{ textDecor: 'underline' }}
+                                >
+                                  {track['name']}
+                                </Text>
+                                <Text
+                                  fontSize={'sm'}
+                                  color="brand.primaryGray"
+                                >
+                                  {track['artists'][0]['name']} ·{' '}
+                                  {track['album']['name']}
+                                </Text>
+                              </GridItem>
+                              <GridItem
+                                ml="1rem"
                                 fontSize={'sm'}
                                 color="brand.primaryGray"
                               >
-                                {track['artists'][0]['name']} ·{' '}
-                                {track['album']['name']}
-                              </Text>
-                            </GridItem>
-                            <GridItem
-                              ml="1rem"
-                              fontSize={'sm'}
-                              color="brand.primaryGray"
-                            >
-                              {milliToMinutes(track['duration_ms'])}
-                            </GridItem>
+                                {milliToMinutes(track['duration_ms'])}
+                              </GridItem>
+                            </Grid>
                           </Grid>
-                        </Grid>
+                        </Link>
                       </>
                     ))}
                   </Flex>

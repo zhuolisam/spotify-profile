@@ -105,10 +105,7 @@ function BarChart({
   useEffect(() => {
     const ctx = canvas.current;
 
-    console.log(chartData);
-
     // eslint-disable-next-line no-unused-vars
-    // @ts-ignore
     const chart = new Chart(ctx, {
       ...config(chartData),
       options: {

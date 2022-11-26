@@ -23,9 +23,6 @@ const AuthProvider = ({ children }: Props) => {
   const [authenticated, setauthenticated] = useState(false);
   const [count, setcount] = useState(0);
 
-  useEffect(() => {
-    console.log('useEffect from AuthProvider');
-  });
 
   return (
     <>

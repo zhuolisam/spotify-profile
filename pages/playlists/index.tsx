@@ -15,7 +15,6 @@ export default function Playlists() {
   const [playlists, setplaylists] = useState<any[]>([]);
 
   useEffect(() => {
-    console.log('useEffect from Recent.tsx');
 
     if (authenticated) {
       const token = JSON.parse(

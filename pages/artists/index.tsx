@@ -33,7 +33,6 @@ export default function TopArtist() {
   const [timeRange, settimeRange] = useState<TimeRange>(TimeRange.LONG_TERM);
 
   useEffect(() => {
-    console.log('useEffect from topArtist');
 
     if (authenticated) {
       const token = JSON.parse(

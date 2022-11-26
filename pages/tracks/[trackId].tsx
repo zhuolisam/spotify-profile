@@ -98,7 +98,6 @@ export default function TopArtist() {
   const [audioFeatures, setAudioFeatures] = useState<any | null>();
 
   useEffect(() => {
-    console.log('useEffect from Single Track');
     const track_id = router.query.trackId;
 
     if (authenticated) {
