@@ -18,7 +18,7 @@ type Artist = {
   popularity: number;
 };
 
-export default function TopArtist() {
+export default function SingleArtist() {
   const { authenticated} = useContext(AuthContext);
   const router = useRouter();
 

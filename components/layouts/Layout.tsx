@@ -18,7 +18,6 @@ function Layout({ children }: Props) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('useEffect from Layout');
     document.body.style.backgroundColor = 'rgb(24,24,24)';
 
     const access_token = JSON.parse(
@@ -37,7 +36,6 @@ function Layout({ children }: Props) {
           refreshToken: access_token.refresh_token,
         })
         .then((res) => {
-          console.log('successful refresh: ', res);
           const token_data = { ...res.data, timestamp: Date.now() };
           window.localStorage.setItem(
             'access_token',
@@ -52,7 +50,6 @@ function Layout({ children }: Props) {
     }
 
     if (access_token) {
-      console.log('user authenticated');
       setauthenticated(true);
       return;
     }
@@ -88,9 +85,12 @@ function Layout({ children }: Props) {
                 as="main"
                 ml={{ base: '0rem', md: '6rem' }}
                 mb={{ base: '4.5rem', md: '0rem' }}
-                padding={{ base: '30px 25px', sm: '60px 50px', md: '80px 80px' }}
+                padding={{
+                  base: '30px 25px',
+                  sm: '60px 50px',
+                  md: '80px 80px',
+                }}
                 bgColor={'brand.secondaryBlack'}
-                minHeight="100vh"
               >
                 {children}
               </Box>

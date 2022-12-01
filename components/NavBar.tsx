@@ -9,11 +9,8 @@ export default function NavBar() {
     <Box
       as="nav"
       position="fixed"
-      w={{ base: '100%', md: '6rem' }}
-      h={{ base: '4.5rem', md: '100%' }}
-      maxH={'100%'}
-      maxW={'100%'}
-      minH="70"
+      w={{ base: '100vw', md: '6rem' }}
+      h={{ base: '4.5rem', md: '100vh' }}
       bottom="0"
       zIndex={1}
       backgroundColor="brand.primaryBlack"
@@ -43,7 +40,6 @@ export default function NavBar() {
               pt="5"
               minW="3.5rem"
               w="3.5rem"
-              h="auto"
               src="/logo/spotify-logo-png-7053.png"
               alt="Spotify Logo"
               transition={'all 0.2s ease-in-out'}
@@ -58,7 +54,6 @@ export default function NavBar() {
         {/* NavBar Tabs */}
         <Box
           w="100%"
-          h={{ base: '100%', md: 'auto' }}
           textColor={'brand.primaryGray'}
           display={{ base: 'flex', md: 'flex' }}
           flexDirection={{ base: 'row', md: 'column' }}
@@ -70,7 +65,6 @@ export default function NavBar() {
           <Link href={'/'}>
             <Box
               w="100%"
-              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
                 borderColor: 'brand.spotifyGreen',
@@ -91,12 +85,11 @@ export default function NavBar() {
             >
               <Box
                 w="100%"
-                h="100%"
                 display="flex"
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={"15px"}
+                py={'15px'}
               >
                 <svg
                   id="user-icon"
@@ -121,7 +114,6 @@ export default function NavBar() {
           <Link href={'/artists'}>
             <Box
               w="100%"
-              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
                 borderColor: 'brand.spotifyGreen',
@@ -150,12 +142,11 @@ export default function NavBar() {
             >
               <Box
                 w="100%"
-                h="100%"
                 display="flex"
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={"15px"}
+                py={'15px'}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +170,6 @@ export default function NavBar() {
           <Link href={'/tracks'}>
             <Box
               w="100%"
-              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
                 borderColor: 'brand.spotifyGreen',
@@ -204,12 +194,11 @@ export default function NavBar() {
             >
               <Box
                 w="100%"
-                h="100%"
                 display="flex"
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={"15px"}
+                py={'15px'}
               >
                 <svg
                   version="1.1"
@@ -229,7 +218,6 @@ export default function NavBar() {
           <Link href={'/recent'}>
             <Box
               w="100%"
-              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
                 borderColor: 'brand.spotifyGreen',
@@ -254,12 +242,11 @@ export default function NavBar() {
             >
               <Box
                 w="100%"
-                h="100%"
                 display="flex"
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={"15px"}
+                py={'15px'}
               >
                 <svg
                   version="1.1"
@@ -285,7 +272,6 @@ export default function NavBar() {
           <Link href={'/playlists'}>
             <Box
               w="100%"
-              h={{ base: '100%', md: 'auto' }}
               transition={'all 0.2s ease-in-out'}
               _hover={{
                 borderColor: 'brand.spotifyGreen',
@@ -314,12 +300,11 @@ export default function NavBar() {
             >
               <Box
                 w="100%"
-                h="100%"
                 display="flex"
                 flexDirection={'column'}
                 justifyContent={'center'}
                 alignItems={'center'}
-                py={"15px"}
+                py={'15px'}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -351,12 +336,11 @@ export default function NavBar() {
                     ></rect>
                   </g>
                 </svg>
-                <Text as="span">playlists</Text>
+                <Text as="span">Playlists</Text>
               </Box>
             </Box>
           </Link>
         </Box>
-
         <Box
           display={{ base: 'none', md: 'block' }}
           mb="20px"

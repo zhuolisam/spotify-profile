@@ -16,7 +16,6 @@ export default function Recent() {
   const [recentTracks, setrecentTracks] = useState<any[]>([]);
 
   useEffect(() => {
-
     if (authenticated) {
       const token = JSON.parse(
         window.localStorage.getItem('access_token') || ''
@@ -72,14 +71,13 @@ export default function Recent() {
             >
               Recently Played Tracks
             </Text>
-
             <Grid
               w="100%"
               mt="3rem"
               templateColumns={'1fr'}
               gap="2rem"
             >
-              {recentTracks.slice(0, 20).map((track, index) => {
+              {recentTracks.slice(0, 50).map((track, index) => {
                 return (
                   <>
                     <Link href={`tracks/${track['track']['id']}`}>

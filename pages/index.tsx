@@ -278,21 +278,23 @@ const Home: NextPage = () => {
                     >
                       Top Artists of All Time
                     </Text>
-                    <Button
-                      border="1px"
-                      borderColor={'white'}
-                      bgColor="brand.secondaryBlack"
-                      borderRadius={'full'}
-                      letterSpacing="wide"
-                      fontSize={'0.8em'}
-                      px={'1.5rem'}
-                      _hover={{
-                        bgColor: 'white',
-                        color: 'brand.secondaryBlack',
-                      }}
-                    >
-                      SEE MORE
-                    </Button>
+                    <Link href="/artists">
+                      <Button
+                        border="1px"
+                        borderColor={'white'}
+                        bgColor="brand.secondaryBlack"
+                        borderRadius={'full'}
+                        letterSpacing="wide"
+                        fontSize={'0.8em'}
+                        px={'1.5rem'}
+                        _hover={{
+                          bgColor: 'white',
+                          color: 'brand.secondaryBlack',
+                        }}
+                      >
+                        SEE MORE
+                      </Button>
+                    </Link>
                   </Flex>
                   <Flex
                     flexDir="column"
@@ -365,21 +367,23 @@ const Home: NextPage = () => {
                     >
                       Top Tracks of All Time
                     </Text>
-                    <Button
-                      border="1px"
-                      borderColor={'white'}
-                      bgColor="brand.secondaryBlack"
-                      borderRadius={'full'}
-                      letterSpacing="wide"
-                      fontSize={'0.8em'}
-                      px={'1.5rem'}
-                      _hover={{
-                        bgColor: 'white',
-                        color: 'brand.secondaryBlack',
-                      }}
-                    >
-                      SEE MORE
-                    </Button>
+                    <Link href="/tracks">
+                      <Button
+                        border="1px"
+                        borderColor={'white'}
+                        bgColor="brand.secondaryBlack"
+                        borderRadius={'full'}
+                        letterSpacing="wide"
+                        fontSize={'0.8em'}
+                        px={'1.5rem'}
+                        _hover={{
+                          bgColor: 'white',
+                          color: 'brand.secondaryBlack',
+                        }}
+                      >
+                        SEE MORE
+                      </Button>
+                    </Link>
                   </Flex>
                   <Flex
                     flexDir="column"

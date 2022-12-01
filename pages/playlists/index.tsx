@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Box, Grid, GridItem, Text, Image} from '@chakra-ui/react';
+import { Box, Grid, GridItem, Text, Image } from '@chakra-ui/react';
 import axios from 'axios';
 
 import Layout from 'components/layouts/Layout';
@@ -8,13 +8,12 @@ import Link from 'next/link';
 
 export default function Playlists() {
   // @ts-ignore
-  const { authenticated} = useContext(AuthContext);
+  const { authenticated } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(true);
   const [playlists, setplaylists] = useState<any[]>([]);
 
   useEffect(() => {
-
     if (authenticated) {
       const token = JSON.parse(
         window.localStorage.getItem('access_token') || ''
@@ -30,7 +29,6 @@ export default function Playlists() {
           headers,
         })
         .then((res) => {
-          console.log(res.data.items);
           if (playlists.length === 0) {
             setplaylists(res.data.items);
           }
@@ -83,7 +81,7 @@ export default function Playlists() {
               {playlists.map((playlist, index) => (
                 <GridItem key={index}>
                   {/* TODO: add link to playlist*/}
-                  <Link href="#">
+                  <Link href={`playlists/${playlist.id}`}>
                     <Image
                       src={playlist['images'][0]['url']}
                       alt={playlist['name']}

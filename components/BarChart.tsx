@@ -31,6 +31,8 @@ interface IProps {
   }[];
   width: string;
   height: string;
+  orientation: string;
+  title: string;
   titleSize: string;
   tickSize: string;
   [x: string]: any;
@@ -69,8 +71,10 @@ const color_pallete = [
 
 function BarChart({
   chartData,
+  orientation,
   width,
   height,
+  title,
   titleSize,
   tickSize,
   ...props
@@ -104,12 +108,12 @@ function BarChart({
 
   useEffect(() => {
     const ctx = canvas.current;
-
     // eslint-disable-next-line no-unused-vars
     // @ts-ignore
     const chart = new Chart(ctx, {
       ...config(chartData),
       options: {
+        indexAxis: orientation == 'horizontal' ? 'y' : 'x',
         responsive: true,
         layout: {
           padding: {
@@ -122,7 +126,6 @@ function BarChart({
         scales: {
           y: {
             display: true,
-            max: 0.9,
             grid: {
               color: 'white',
               lineWidth: 0.2,
@@ -159,7 +162,7 @@ function BarChart({
           },
           title: {
             display: true,
-            text: 'Audio Features',
+            text: title,
             color: 'white',
             font: {
               size: titleSize,
@@ -178,7 +181,7 @@ function BarChart({
         animation: {
           duration: 500,
         },
-        aspectRatio: 1 / 2,
+        aspectRatio: 1 / 1,
         maintainAspectRatio: false,
       },
     });

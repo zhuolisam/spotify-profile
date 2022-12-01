@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Box, Text, Image, Button, Grid} from '@chakra-ui/react';
+import { Box, Text, Image, Button, Grid } from '@chakra-ui/react';
 import axios from 'axios';
 
 import { AuthContext } from 'providers/AuthContext';
@@ -87,7 +87,7 @@ export function WrappedGridItem({
   );
 }
 
-export default function TopArtist() {
+export default function SingleTrack() {
   const router = useRouter();
   const { authenticated } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
@@ -100,7 +100,7 @@ export default function TopArtist() {
   useEffect(() => {
     const track_id = router.query.trackId;
 
-    if (authenticated) {
+    if (authenticated && track_id) {
       const token = JSON.parse(
         window.localStorage.getItem('access_token') || ''
       );
@@ -326,6 +326,7 @@ export default function TopArtist() {
             </Grid>
             {/* end of audio analysis */}
             <BarChart
+              orientation="vertical"
               chartData={[
                 {
                   name: 'acousticness',
@@ -359,6 +360,7 @@ export default function TopArtist() {
               position="relative"
               mx="auto"
               mt="5rem"
+              title="Audio Features"
               titleSize="16rem"
               tickSize="12rem"
               width="100%"
