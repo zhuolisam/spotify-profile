@@ -34,7 +34,6 @@ export default function TopTracks() {
   const [timeRange, settimeRange] = useState<TimeRange>(TimeRange.LONG_TERM);
 
   useEffect(() => {
-
     if (authenticated) {
       const token = JSON.parse(
         window.localStorage.getItem('access_token') || ''
