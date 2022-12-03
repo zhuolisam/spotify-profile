@@ -8,7 +8,7 @@ import BarChart from 'components/BarChart';
 import { useRouter } from 'next/router';
 import { milliToMinutes } from 'lib/helpers/helperUtils';
 
-type TrackType = {
+export type TrackType = {
   id: string;
   images: {
     url: string;

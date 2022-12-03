@@ -9,7 +9,7 @@ import axios from 'axios';
 import { AuthContext } from 'providers/AuthContext';
 
 const Login: NextPage = () => {
-  const AUTH_URL = `https://accounts.spotify.com/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}/login&scope=user-read-private%20user-top-read%20playlist-read-private%20playlist-read-collaborative%20user-read-recently-played%20user-follow-read&state=hello`;
+  const AUTH_URL = `https://accounts.spotify.com/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_BASE_URL}/login&scope=user-read-private%20user-top-read%20playlist-read-private%20playlist-read-collaborative%20user-read-recently-played%20playlist-modify-public%20playlist-modify-private%20user-follow-read&state=hi`;
 
   const router = useRouter();
 

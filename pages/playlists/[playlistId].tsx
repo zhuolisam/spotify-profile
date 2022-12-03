@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { milliToMinutes } from 'lib/helpers/helperUtils';
 import InfoButton from 'components/InfoButton';
 
-type PlaylistType = {
+export type PlaylistType = {
   id: string;
   name: string;
   images: {
@@ -211,7 +211,20 @@ export default function SinglePlaylist() {
               >
                 {playlist?.tracks.length} tracks
               </Text>
-              <Link href={`/recommendations/${playlist?.id}`}>
+              <Link
+                href={{
+                  pathname: `/recommendations/[playlistId]`,
+                  query: {
+                    playlistId: playlist?.id,
+                    playlistName: playlist?.name,
+                    tracks_ids: playlist?.tracks
+                      .slice(-5)
+                      .map((track) => track['track']['id'])
+                      .join(','),
+                  },
+                }}
+                as={`/recommendations/${playlist?.id}?playlistName=${playlist?.name}&tracks_ids=${playlist?.tracks}`}
+              >
                 <Button
                   mt="1.6rem"
                   mx="auto"
