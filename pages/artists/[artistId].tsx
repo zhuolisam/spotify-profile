@@ -5,6 +5,7 @@ import axios from 'axios';
 import { AuthContext } from 'providers/AuthContext';
 import Layout from 'components/layouts/Layout';
 import { useRouter } from 'next/router';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 type Artist = {
   images: {
@@ -19,14 +20,13 @@ type Artist = {
 };
 
 export default function SingleArtist() {
-  const { authenticated} = useContext(AuthContext);
+  const { authenticated } = useContext(AuthContext);
   const router = useRouter();
 
   const [loading, setLoading] = useState(true);
   const [artist, setArtist] = useState<Artist | null>(null);
 
   useEffect(() => {
-
     const artist_id = router.query.artistId;
 
     if (authenticated) {
@@ -63,16 +63,7 @@ export default function SingleArtist() {
     <>
       <Layout>
         {loading ? (
-          <>
-            <Box
-              w="100%"
-              h="100vh"
-              display={'flex'}
-              placeContent="center"
-            >
-              <Text color="white">Loading</Text>
-            </Box>
-          </>
+          <LoaderSpinner />
         ) : (
           <>
             <Box

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
-import { Box,  Text, Button } from '@chakra-ui/react';
+import { Box, Text, Button } from '@chakra-ui/react';
 import { useContext } from 'react';
 
 import { AuthContext } from 'providers/AuthContext';
@@ -35,7 +35,7 @@ const Login: NextPage = () => {
         <Text mx={'auto'}>{count}</Text>
 
         <Button
-          onClick={() => setcount(count+1)}
+          onClick={() => setcount(count + 1)}
           mx={'auto'}
         >
           +1

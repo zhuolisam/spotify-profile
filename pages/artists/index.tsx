@@ -6,6 +6,7 @@ import { AuthContext } from 'providers/AuthContext';
 import Layout from 'components/layouts/Layout';
 import Link from 'next/link';
 import InfoButton from 'components/InfoButton';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 type ArtistsList = {
   long_term: [];
@@ -33,7 +34,6 @@ export default function TopArtist() {
   const [timeRange, settimeRange] = useState<TimeRange>(TimeRange.LONG_TERM);
 
   useEffect(() => {
-
     if (authenticated) {
       const token = JSON.parse(
         window.localStorage.getItem('access_token') || ''
@@ -88,16 +88,7 @@ export default function TopArtist() {
     <>
       <Layout>
         {loading ? (
-          <>
-            <Box
-              w="100%"
-              h="100vh"
-              display={'flex'}
-              placeContent="center"
-            >
-              <Text color="white">Loading</Text>
-            </Box>
-          </>
+          <LoaderSpinner />
         ) : (
           <Box
             w="100%"

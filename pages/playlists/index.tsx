@@ -5,6 +5,7 @@ import axios from 'axios';
 import Layout from 'components/layouts/Layout';
 import { AuthContext } from 'providers/AuthContext';
 import Link from 'next/link';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 export default function Playlists() {
   // @ts-ignore
@@ -43,16 +44,7 @@ export default function Playlists() {
     <>
       <Layout>
         {loading ? (
-          <>
-            <Box
-              w="100%"
-              h="100vh"
-              display={'flex'}
-              placeContent="center"
-            >
-              <Text color="white">Loading</Text>
-            </Box>
-          </>
+          <LoaderSpinner />
         ) : (
           <Box
             w="100%"

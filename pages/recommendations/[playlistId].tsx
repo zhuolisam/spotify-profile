@@ -19,6 +19,7 @@ import { PlaylistType } from 'pages/playlists/[playlistId]';
 import { milliToMinutes } from 'lib/helpers/helperUtils';
 import Link from 'next/link';
 import InfoButton from 'components/InfoButton';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 interface PlaylistRecommendationType extends PlaylistType {
   recommendationTracks: [];
@@ -203,16 +204,7 @@ export default function PlaylistRecommendation() {
   return (
     <Layout>
       {loading ? (
-        <>
-          <Box
-            w="100%"
-            h="100vh"
-            display={'flex'}
-            placeContent="center"
-          >
-            <Text color="white">Loading</Text>
-          </Box>
-        </>
+        <LoaderSpinner />
       ) : (
         <>
           <Box

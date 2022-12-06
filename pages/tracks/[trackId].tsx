@@ -7,6 +7,7 @@ import Layout from 'components/layouts/Layout';
 import BarChart from 'components/BarChart';
 import { useRouter } from 'next/router';
 import { milliToMinutes } from 'lib/helpers/helperUtils';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 export type TrackType = {
   id: string;
@@ -182,16 +183,7 @@ export default function SingleTrack() {
   return (
     <Layout>
       {loading ? (
-        <>
-          <Box
-            w="100%"
-            h="100vh"
-            display={'flex'}
-            placeContent="center"
-          >
-            <Text color="white">Loading</Text>
-          </Box>
-        </>
+        <LoaderSpinner />
       ) : (
         <>
           <Box

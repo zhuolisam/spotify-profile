@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { milliToMinutes } from 'lib/helpers/helperUtils';
 import InfoButton from 'components/InfoButton';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 export type PlaylistType = {
   id: string;
@@ -146,16 +147,7 @@ export default function SinglePlaylist() {
   return (
     <Layout>
       {loading ? (
-        <>
-          <Box
-            w="100%"
-            h="100vh"
-            display={'flex'}
-            placeContent="center"
-          >
-            <Text color="white">Loading</Text>
-          </Box>
-        </>
+        <LoaderSpinner />
       ) : (
         <>
           <Box
@@ -292,78 +284,79 @@ export default function SinglePlaylist() {
               flexGrow="1"
             >
               {playlist?.tracks.map((track, index) => (
-                <>
-                  <Link href={`/tracks/${track['track']['id']}`}>
+                <Link
+                  href={`/tracks/${track['track']['id']}`}
+                  key={index}
+                >
+                  <Grid
+                    key={index}
+                    templateColumns={'auto 1fr'}
+                    alignItems="center"
+                    cursor={'pointer'}
+                    role="group"
+                  >
+                    <GridItem position="relative">
+                      <Image
+                        src={track['track']['album']['images'][0]['url']}
+                        alt={track['track']['name']}
+                        boxSize="3.2rem"
+                        loading="lazy"
+                        objectFit={'cover'}
+                        _groupHover={{ opacity: '0.5' }}
+                        transition="all 0.2s ease-in-out"
+                      />
+                      <InfoButton
+                        position="absolute"
+                        right="0"
+                        left="0"
+                        top="0"
+                        bottom="0"
+                        opacity="0"
+                        mx="auto"
+                        my="auto"
+                        w="1.5rem"
+                        h="1.5rem"
+                        _groupHover={{ opacity: '1' }}
+                        transition="all 0.2s ease-in-out"
+                      />
+                    </GridItem>
                     <Grid
-                      key={index}
-                      templateColumns={'auto 1fr'}
-                      alignItems="center"
-                      cursor={'pointer'}
-                      role="group"
+                      ml="1rem"
+                      gridTemplateColumns={'1fr max-content'}
+                      gap={'10px'}
                     >
-                      <GridItem position="relative">
-                        <Image
-                          src={track['track']['album']['images'][0]['url']}
-                          alt={track['track']['name']}
-                          boxSize="3.2rem"
-                          loading="lazy"
-                          objectFit={'cover'}
-                          _groupHover={{ opacity: '0.5' }}
-                          transition="all 0.2s ease-in-out"
-                        />
-                        <InfoButton
-                          position="absolute"
-                          right="0"
-                          left="0"
-                          top="0"
-                          bottom="0"
-                          opacity="0"
-                          mx="auto"
-                          my="auto"
-                          w="1.5rem"
-                          h="1.5rem"
-                          _groupHover={{ opacity: '1' }}
-                          transition="all 0.2s ease-in-out"
-                        />
-                      </GridItem>
-                      <Grid
-                        ml="1rem"
-                        gridTemplateColumns={'1fr max-content'}
-                        gap={'10px'}
+                      <GridItem
+                        overflow={'hidden'}
+                        textOverflow={'ellipsis'}
+                        whiteSpace={'nowrap'}
+                        pr="1px"
                       >
-                        <GridItem
-                          overflow={'hidden'}
-                          textOverflow={'ellipsis'}
-                          whiteSpace={'nowrap'}
-                          pr="1px"
+                        <Text
+                          fontSize={{ base: 'md', md: 'large' }}
+                          textUnderlineOffset={'0.2em'}
+                          textDecorationThickness={'1px'}
+                          _hover={{ textDecor: 'underline' }}
                         >
-                          <Text
-                            fontSize={{ base: 'md', md: 'large' }}
-                            textUnderlineOffset={'0.2em'}
-                            textDecorationThickness={'1px'}
-                            _hover={{ textDecor: 'underline' }}
-                          >
-                            {track['track']['name']}
-                          </Text>
-                          <Text
-                            fontSize={'sm'}
-                            color="brand.primaryGray"
-                          >
-                            {track['track']['artists'][0]['name']} ·{' '}
-                            {track['track']['album']['name']}
-                          </Text>
-                        </GridItem>
-                        <GridItem
-                          ml="1rem"
+                          {track['track']['name']}
+                        </Text>
+                        <Text
                           fontSize={'sm'}
                           color="brand.primaryGray"
                         >
-                          {milliToMinutes(track['track']['duration_ms'])}
-                        </GridItem>
-                      </Grid>
+                          {track['track']['artists'][0]['name']} ·{' '}
+                          {track['track']['album']['name']}
+                        </Text>
+                      </GridItem>
+                      <GridItem
+                        ml="1rem"
+                        fontSize={'sm'}
+                        color="brand.primaryGray"
+                      >
+                        {milliToMinutes(track['track']['duration_ms'])}
+                      </GridItem>
                     </Grid>
-                  </Link>
-                </>
+                  </Grid>
+                </Link>
               ))}
             </Flex>
           </Box>

@@ -19,6 +19,7 @@ import { AuthContext } from 'providers/AuthContext';
 import { milliToMinutes } from 'lib/helpers/helperUtils';
 import InfoButton from 'components/InfoButton';
 import Link from 'next/link';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 const Home: NextPage = () => {
   const { authenticated, setauthenticated } = useContext(AuthContext);
@@ -121,16 +122,7 @@ const Home: NextPage = () => {
     <Layout>
       <>
         {loading ? (
-          <>
-            <Box
-              w="100%"
-              h="100vh"
-              display={'flex'}
-              placeContent="center"
-            >
-              <Text color="white">Loading</Text>
-            </Box>
-          </>
+          <LoaderSpinner />
         ) : (
           <>
             <Box

@@ -7,6 +7,7 @@ import Layout from 'components/layouts/Layout';
 import { AuthContext } from 'providers/AuthContext';
 import InfoButton from 'components/InfoButton';
 import { milliToMinutes } from 'lib/helpers/helperUtils';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 export default function Recent() {
   // @ts-ignore
@@ -47,16 +48,7 @@ export default function Recent() {
     <>
       <Layout>
         {loading ? (
-          <>
-            <Box
-              w="100%"
-              h="100vh"
-              display={'flex'}
-              placeContent="center"
-            >
-              <Text color="white">Loading</Text>
-            </Box>
-          </>
+          <LoaderSpinner />
         ) : (
           <Box
             w="100%"

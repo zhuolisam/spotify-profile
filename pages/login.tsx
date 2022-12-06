@@ -36,7 +36,10 @@ const Login: NextPage = () => {
         })
         .then((res) => {
           const token_data = { ...res.data, timestamp: Date.now() };
-          window.localStorage.setItem('access_token', JSON.stringify(token_data));
+          window.localStorage.setItem(
+            'access_token',
+            JSON.stringify(token_data)
+          );
           setauthenticated(true);
           router.push('/');
         })

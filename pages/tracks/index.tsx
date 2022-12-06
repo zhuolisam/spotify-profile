@@ -7,6 +7,7 @@ import Layout from 'components/layouts/Layout';
 import Link from 'next/link';
 import InfoButton from 'components/InfoButton';
 import { milliToMinutes } from 'lib/helpers/helperUtils';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 type TracksList = {
   long_term: [];
@@ -87,16 +88,7 @@ export default function TopTracks() {
     <>
       <Layout>
         {loading ? (
-          <>
-            <Box
-              w="100%"
-              h="100vh"
-              display={'flex'}
-              placeContent="center"
-            >
-              <Text color="white">Loading</Text>
-            </Box>
-          </>
+          <LoaderSpinner />
         ) : (
           <Box
             w="100%"

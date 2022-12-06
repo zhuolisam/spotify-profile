@@ -25,6 +25,7 @@ const theme = extendTheme({
       primaryWhite: 'rgb(255,255,255)',
       primaryGray: 'rgb(155,155,155)',
       secondaryGray: 'rgb(179,179,179)',
+      ternaryGray: 'rgb(64,64,64)',
       spotifyGreen: 'rgb(29,185,84)',
       primaryBlue: 'rgb(80, 155, 245)',
     },
