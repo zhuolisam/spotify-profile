@@ -22,7 +22,7 @@ export const BeepopBox = ({
       animate={{ scaleY: [0.2, 1, 0.2] }}
       // @ts-ignore
       transition={{
-        duration: 0.8,
+        duration: 0.6,
         delay: delayTime,
         repeat: Infinity,
         ease: 'linear',
@@ -42,11 +42,11 @@ function LoaderSpinner() {
         listStyleType="none"
         mt="20rem"
       >
-        <BeepopBox delayTime={0.15} />
-        <BeepopBox delayTime={0.4} />
+        <BeepopBox delayTime={0} />
+        <BeepopBox delayTime={0.3} />
+        <BeepopBox delayTime={0} />
         <BeepopBox delayTime={0.15} />
         <BeepopBox delayTime={0.25} />
-        <BeepopBox delayTime={0.35} />
       </List>
     </Box>
   );

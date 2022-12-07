@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { AuthContext } from 'providers/AuthContext';
 import NavBar from 'components/NavBar';
 import axios from 'axios';
+import LoaderSpinner from 'components/LoaderSpinner';
 
 type Props = {
   children?: React.ReactNode;
@@ -71,11 +72,9 @@ function Layout({ children }: Props) {
         />
         <link
           rel="icon"
-          href="/favicon.ico"
+          href="/spotify-logo.ico"
         />
-        {/* <link rel="icon" href="/logo/spotify-logo-png-7053.png" /> */}
       </Head>
-
       {
         <>
           <NavBar />
@@ -96,18 +95,7 @@ function Layout({ children }: Props) {
               </Box>
             </>
           ) : (
-            <>
-              <Box
-                as="main"
-                display={'flex'}
-                flexDir={'column'}
-                placeContent="center"
-                h={'100vh'}
-                w={'100vw'}
-              >
-                <Text mx={'auto'}>Authenticating</Text>
-              </Box>
-            </>
+            <LoaderSpinner />
           )}
         </>
       }

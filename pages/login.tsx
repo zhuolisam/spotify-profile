@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { Box, Container, Grid, Text, Button } from '@chakra-ui/react';
+import { Box, Button, Image, Text } from '@chakra-ui/react';
 import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -18,8 +18,7 @@ const Login: NextPage = () => {
   const [authenticating, setAuthenticating] = useState(false);
 
   useEffect(() => {
-    document.body.style.backgroundColor = 'white';
-
+    document.body.style.backgroundColor = 'rgb(24,24,24)';
     if (authenticated) {
       console.log('authenticated from login');
       router.push('/');
@@ -61,9 +60,8 @@ const Login: NextPage = () => {
         />
         <link
           rel="icon"
-          href="/favicon.ico"
+          href="/spotify-logo.ico"
         />
-        {/* <link rel="icon" href="/logo/spotify-logo-png-7053.png" /> */}
       </Head>
       <Box
         as="main"
@@ -72,19 +70,41 @@ const Login: NextPage = () => {
         placeContent="center"
         h={'100vh'}
         w={'100vw'}
+        color="white"
       >
-        <Text mx={'auto'}>Spotify Profile</Text>
+        <Image
+          src="/logo/spotify-logo-png-7053.png"
+          alt="Spotify Logo"
+          w="10rem"
+          mx="auto"
+          cursor={'pointer'}
+        />
+        <Text
+          mt="1.2rem"
+          textAlign={'center'}
+          fontSize={'2rem'}
+          fontWeight={'extrabold'}
+        >
+          Spotify Profile
+        </Text>
         <Link href={AUTH_URL}>
-          {/* <Button
-            mx={'auto'}
-            onClick={() => {
-              router.push('.');
-            }}
+          <Button
+            mt="1.8rem"
+            mx="auto"
+            color={'white'}
+            bgColor={'brand.spotifyGreen'}
+            _hover={{ filter: 'brightness(110%)' }}
+            _active={{ filter: 'brightness(110%)' }}
+            borderRadius="full"
+            transition="all 0.2s ease-in-out"
+            p="1.8rem 3rem"
+            fontWeight={'bold'}
+            fontSize="1.2rem"
+            letterSpacing={'widest'}
+            whiteSpace={'normal'}
           >
-            Login
-          </Button> */}
-          {/*TODO - Make the button become a loading spinner when authenticating*/}
-          <Button mx={'auto'}>Login</Button>
+            LOGIN TO SPOTIFY
+          </Button>
         </Link>
       </Box>
     </>

@@ -1,12 +1,14 @@
 @import url('http://fonts.cdnfonts.com/css/circular-std?styles=17909,17911,17907,17905');
 
 html,
-body {
+body,
+#__next {
   padding: 0;
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
   font-weight: 400;
+  background-color: 'rgb(24,24,24)';
 }
 
 a {
