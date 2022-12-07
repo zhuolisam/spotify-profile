@@ -102,7 +102,7 @@ const Home: NextPage = () => {
                 external_url: responses[2].data.external_urls.spotify,
               });
             }
-            setLoading(true);
+            setLoading(false);
             console.log(topTracks);
           })
         )
