@@ -67,44 +67,48 @@ const Login: NextPage = () => {
         as="main"
         display={'flex'}
         flexDir={'column'}
-        placeContent="center"
-        h={'100vh'}
-        w={'100vw'}
+        alignItems={'center'}
+        justifyContent={'center'}
         color="white"
+        h="100vh"
       >
         <Image
           src="/logo/spotify-logo-png-7053.png"
           alt="Spotify Logo"
           w="10rem"
-          mx="auto"
           cursor={'pointer'}
         />
         <Text
           mt="1.2rem"
-          textAlign={'center'}
           fontSize={'2rem'}
           fontWeight={'extrabold'}
+          textAlign={'center'}
         >
           Spotify Profile
         </Text>
-        <Link href={AUTH_URL}>
-          <Button
+        <Link
+          href={AUTH_URL}
+          passHref
+        >
+          <Text
+            as="a"
+            display={'inline-block'}
             mt="1.8rem"
-            mx="auto"
             color={'white'}
             bgColor={'brand.spotifyGreen'}
             _hover={{ filter: 'brightness(110%)' }}
             _active={{ filter: 'brightness(110%)' }}
             borderRadius="full"
             transition="all 0.2s ease-in-out"
-            p="1.8rem 3rem"
+            p="1rem 3rem"
             fontWeight={'bold'}
             fontSize="1.2rem"
             letterSpacing={'widest'}
             whiteSpace={'normal'}
+            textAlign={'center'}
           >
             LOGIN TO SPOTIFY
-          </Button>
+          </Text>
         </Link>
       </Box>
     </>
